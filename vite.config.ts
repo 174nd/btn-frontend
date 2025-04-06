@@ -14,6 +14,7 @@ export default defineConfig({
   },
   preview: {
     port: Number(process.env.VITE_PORT) || 3000,
+    allowedHosts: [process.env.VITE_DOMAIN || "localhost"],
     //   strictPort: true,
   },
   server: {
