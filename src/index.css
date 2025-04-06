@@ -1,0 +1,23 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme {
+  --font-sans: "Poppins", sans-serif;
+
+  --color-primary-50: #edfff4;
+  --color-primary-100: #d6ffe8;
+  --color-primary-200: #afffd1;
+  --color-primary-300: #71ffaf;
+  --color-primary-400: #2dfb85;
+  --color-primary-500: #02e565;
+  --color-primary-600: #00bf4f;
+  --color-primary-700: #009240;
+  --color-primary-800: #067537;
+  --color-primary-900: #085f30;
+  --color-primary-950: #003618;
+}
+
+body {
+  font-family: var(--font-sans);
+}
