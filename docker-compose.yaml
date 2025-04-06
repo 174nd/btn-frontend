@@ -1,0 +1,16 @@
+version: "3.9"
+
+services:
+  frontend:
+    image: btn-frontend:latest
+    container_name: btn-frontend
+    build:
+      context: .
+      dockerfile: Dockerfile
+    # environment:
+    #   - VITE_BACKEND_URL=http://localhost:3000 # URL backend
+
+networks:
+  default:
+    name: internal
+    external: true
