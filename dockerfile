@@ -12,3 +12,5 @@ COPY . .
 COPY .env.example .env.production
 
 RUN bun run build
+
+CMD ["bun", "run", "preview"]
