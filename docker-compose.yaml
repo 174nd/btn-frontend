@@ -7,8 +7,20 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+    # environtment: .env.production
     # environment:
     #   - VITE_BACKEND_URL=http://localhost:3000 # URL backend
+    # command: sh -c "bun run build && bun run preview"
+    ports:
+      - 8080:8080
+    command: bun run dev
+    volumes:
+      - .:/app
+      - node_modules:/app/node_modules
+
+volumes:
+  node_modules:
+    name: btn-frontend-node_modules
 
 networks:
   default:

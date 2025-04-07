@@ -1,3 +1,4 @@
+import { AnimatePresence, motion } from "motion/react";
 import { useState } from "react";
 import { HiMenu, HiX } from "react-icons/hi";
 import { PiArrowUpRightBold } from "react-icons/pi";
@@ -6,6 +7,15 @@ import { PiArrowUpRightBold } from "react-icons/pi";
 export const Navbar = () => {
   // const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
+  const link = [
+    { name: "Home", href: "/" },
+    { name: "About Us", href: "/about" },
+    { name: "Products", href: "/products" },
+    { name: "Why Choose Us", href: "/why-choose-us" },
+    { name: "Testimony", href: "/testimony" },
+    { name: "Contact Us", href: "/contact" },
+    { name: "Privacy & Policy", href: "/privacy-policy" },
+  ];
 
   return (
     <header className="fixed top-4 z-50 mx-auto w-full max-w-[1080px]">
@@ -17,15 +27,11 @@ export const Navbar = () => {
 
         {/* Desktop nav */}
         <nav className="hidden space-x-6 md:flex">
-          <a href="/" className="text-gray-700 hover:text-black">
-            Home
-          </a>
-          <a href="/about" className="text-gray-700 hover:text-black">
-            About
-          </a>
-          <a href="/contact" className="text-gray-700 hover:text-black">
-            Contact
-          </a>
+          {link.map((item) => (
+            <a key={item.name} href={item.href} className="text-gray-700 hover:text-black">
+              {item.name}
+            </a>
+          ))}
         </nav>
 
         {/* Mobile menu toggle */}
@@ -42,19 +48,28 @@ export const Navbar = () => {
       </div>
 
       {/* Mobile nav dropdown */}
-      {isOpen && (
-        <nav className="mt-3 space-y-2 px-2 md:hidden">
-          <a href="/" className="block text-gray-700 hover:text-black">
-            Home
-          </a>
-          <a href="/about" className="block text-gray-700 hover:text-black">
-            About
-          </a>
-          <a href="/contact" className="block text-gray-700 hover:text-black">
-            Contact
-          </a>
-        </nav>
-      )}
+
+      <AnimatePresence>
+        {isOpen && (
+          <motion.nav
+            initial={{ y: -20, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            exit={{ y: -20, opacity: 0 }}
+            transition={{ duration: 0.3, ease: "easeInOut" }}
+            className="top-full mt-3 w-full rounded-2xl shadow-md md:hidden"
+          >
+            <ul className="mx-4 flex flex-col gap-4 rounded-2xl bg-white px-4 py-2">
+              {link.map((item) => (
+                <li key={item.name}>
+                  <a href={item.href} className="text-gray-700 hover:text-black">
+                    {item.name}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </motion.nav>
+        )}
+      </AnimatePresence>
     </header>
   );
 };

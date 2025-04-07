@@ -13,14 +13,16 @@ export default defineConfig({
     },
   },
   preview: {
+    host: true, // mengizinkan koneksi dari luar (0.0.0.0)
     port: Number(process.env.VITE_PORT) || 3000,
     allowedHosts: [process.env.VITE_DOMAIN || "localhost"],
     //   strictPort: true,
   },
   server: {
-    port: Number(process.env.VITE_PORT) || 3000,
-    // strictPort: true,
     host: true,
+    port: Number(process.env.VITE_PORT) || 3000,
+    allowedHosts: [process.env.VITE_DOMAIN || "localhost"],
+    // strictPort: true,
     // origin: "http://0.0.0.0:8080",
   },
 });

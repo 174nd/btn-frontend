@@ -1,13 +1,18 @@
 import { SiGooglemaps } from "react-icons/si";
 import { HomeLayout } from "./layout";
-import { Accordion } from "@/components/ui/accordion";
-import { PiArrowLeftBold, PiArrowRightBold, PiArrowUpRightBold } from "react-icons/pi";
+import { PiArrowLeftBold, PiArrowRightBold } from "react-icons/pi";
 import { FaRegDotCircle } from "react-icons/fa";
 import { AiFillFacebook, AiOutlineInstagram, AiOutlineWhatsApp } from "react-icons/ai";
 import { BiSolidPhoneCall } from "react-icons/bi";
 import { MdEmail } from "react-icons/md";
 import { BsTwitterX } from "react-icons/bs";
-import { AccordionFaQ } from "@/components/ui/accordionFaQ";
+import { ChooseUsAccordion } from "./component/chooseUsAccordion";
+import { ChooseUsNews } from "./component/chooseUsNews";
+import { FaQAccordion } from "./component/faqAccordion";
+import { ContactUs } from "./component/contactUs";
+import Footer from "./component/footer";
+import { Testimonial } from "./component/testimonial";
+import { OurClient } from "./component/ourClientLogo";
 
 export const Home = () => {
   const items = [
@@ -49,16 +54,35 @@ export const Home = () => {
     },
   ];
 
+  const news = [
+    { title: "Laboris laborum qui qui excepteur irure cillum elit culpa.", url: "#", image: "/bg/bg1.jpg" },
+    { title: "Ipsum qui consequat labore incididunt dolor irure esse eiusmod.", url: "#", image: "/bg/bg2.jpg" },
+    { title: "Deserunt amet culpa nulla eu.", url: "#", image: "/bg/bg3.jpg" },
+  ];
+  const testimonial = [
+    { testimonial: "Laboris laborum qui qui excepteur irure cillum elit culpa.", title: "Top Customer", name: "Andi", image: "/bg/bg1.jpg" },
+    { testimonial: "Ipsum qui consequat labore incididunt dolor irure esse eiusmod.", title: "Top Customer", name: "Lewis", image: "/bg/bg2.jpg" },
+    { testimonial: "Deserunt amet culpa nulla eu.", title: "Top Customer", name: "Pratama", image: "/bg/bg3.jpg" },
+  ];
+
   const city = ["Jambi", "Medan", "Kalimantan", "Batam", "Jayapura"];
+
+  const ourClients = [
+    { name: "Instagram", url: "#", icon: "/vite.svg" },
+    { name: "Twitter", url: "#", icon: "/vite.svg" },
+    { name: "Google Play", url: "#", icon: "/vite.svg" },
+    { name: "Facebook", url: "#", icon: "/vite.svg" },
+    { name: "Google Drive", url: "#", icon: "/vite.svg" },
+  ];
 
   return (
     <HomeLayout>
-      <div className="relative h-[650px]">
+      <div className="relative h-screen md:h-[650px]">
         <div className="absolute h-full w-full bg-[url('/bg/bg1.jpg')] bg-cover" />
         <div className="from-primary-700 to-primary-700/0 absolute h-full w-full bg-gradient-to-b" />
-        <div className="absolute inset-0 flex h-[650px] w-full items-center">
-          <div className="mx-auto flex w-full max-w-[1080px] items-center justify-between">
-            <div className="w-[270px] rounded-md bg-white/50 p-3 pt-2 backdrop-blur-lg">
+        <div className="absolute inset-0 flex h-screen items-center md:h-[650px] md:w-full">
+          <div className="mx-auto flex w-full max-w-[1080px] flex-col items-center justify-between gap-14 md:flex-row">
+            <div className="order-2 w-[270px] rounded-md bg-white/50 p-3 pt-2 backdrop-blur-lg md:order-1">
               <div className="flex items-center gap-1">
                 <SiGooglemaps className="w-3" />
                 <span>Batam, Indonesia</span>
@@ -66,9 +90,9 @@ export const Home = () => {
               <div className="h-[100px] w-full rounded-md bg-white"></div>
             </div>
 
-            <div className="w-[417px] text-white">
-              <h1 className="text-right text-[64px]/[64px] font-bold">BAKTI TANI NUSANTARA</h1>
-              <div className="text-right">
+            <div className="order-1 w-full px-4 text-white md:order-2 md:w-[417px] md:px-0">
+              <h1 className="text-center text-5xl font-bold md:text-right md:text-[64px]/[64px]">BAKTI TANI NUSANTARA</h1>
+              <div className="w-full text-center text-xs md:text-right md:text-base">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc viverra enim ac egestas porttitor. Quisque scelerisque diam lorem, vel
                 tristique dolor mollis malesuada
               </div>
@@ -77,42 +101,12 @@ export const Home = () => {
         </div>
       </div>
 
-      <div className="bg-primary-800 h-[160px] py-6">
-        <h2 className="mx-auto text-center text-3xl font-bold text-white">Our Client</h2>
-        <div className="relative h-16 w-full overflow-hidden bg-gray-200">
-          <div className="animate-marquee-right absolute border border-red-500 whitespace-nowrap">
-            <img src="/logo.png" alt="Logo" className="mx-4 inline-block h-16" />
-            <img src="/logo.png" alt="Logo" className="mx-4 inline-block h-16" />
-            <img src="/logo.png" alt="Logo" className="mx-4 inline-block h-16" />
-            <img src="/logo.png" alt="Logo" className="mx-4 inline-block h-16" />
-            <img src="/logo.png" alt="Logo" className="mx-4 inline-block h-16" />
-            <img src="/logo.png" alt="Logo" className="mx-4 inline-block h-16" />
-            <img src="/logo.png" alt="Logo" className="mx-4 inline-block h-16" />
-            <img src="/logo.png" alt="Logo" className="mx-4 inline-block h-16" />
-            <img src="/logo.png" alt="Logo" className="mx-4 inline-block h-16" />
-            <img src="/logo.png" alt="Logo" className="mx-4 inline-block h-16" />
-            <img src="/logo.png" alt="Logo" className="mx-4 inline-block h-16" />
-            <img src="/logo.png" alt="Logo" className="mx-4 inline-block h-16" />
-            <img src="/logo.png" alt="Logo" className="mx-4 inline-block h-16" />
-            <img src="/logo.png" alt="Logo" className="mx-4 inline-block h-16" />
-            <img src="/logo.png" alt="Logo" className="mx-4 inline-block h-16" />
-            <img src="/logo.png" alt="Logo" className="mx-4 inline-block h-16" />
-            <img src="/logo.png" alt="Logo" className="mx-4 inline-block h-16" />
-            <img src="/logo.png" alt="Logo" className="mx-4 inline-block h-16" />
-            <img src="/logo.png" alt="Logo" className="mx-4 inline-block h-16" />
-            <img src="/logo.png" alt="Logo" className="mx-4 inline-block h-16" />
-            <img src="/logo.png" alt="Logo" className="mx-4 inline-block h-16" />
-            <img src="/logo.png" alt="Logo" className="mx-4 inline-block h-16" />
-            <img src="/logo.png" alt="Logo" className="mx-4 inline-block h-16" />
-            <img src="/logo.png" alt="Logo" className="mx-4 inline-block h-16" />
-          </div>
-        </div>
-      </div>
+      <OurClient data={ourClients} />
 
-      <div className="mx-auto mt-10 flex w-full max-w-[1080px] items-center justify-between">
-        <div className="h-fit">
+      <div className="mx-auto mt-10 flex w-full max-w-[1080px] flex-col items-center justify-between gap-10 md:mt-10 md:flex-row md:gap-0">
+        <div className="flex h-fit flex-col gap-4 px-4 md:gap-2 md:px-0">
           <h2 className="text-primary-800 text-4xl font-bold">About Us</h2>
-          <p className="w-[550px]">
+          <p className="w-full md:w-[550px]">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vitae vehicula eros, consectetur efficitur elit. Aenean diam lacus,
             dignissim at ultrices at, dapibus et justo
           </p>
@@ -121,7 +115,7 @@ export const Home = () => {
         <div className="h-[210px] w-[157px] -rotate-12 rounded-md bg-[url(/au.jpg)] bg-cover" />
       </div>
 
-      <div className="mx-auto mt-10 grid max-w-[1080px] grid-cols-3 gap-6">
+      <div className="mx-auto mt-10 grid max-w-[1080px] grid-cols-1 gap-6 px-4 md:grid-cols-3 md:px-0">
         <div className="group relative h-[200px] w-full overflow-hidden rounded-xl">
           <div className="absolute h-[200px] w-full bg-[url(/au.jpg)] bg-cover" />
           <div className="bg-primary-700/100 group-hover:bg-primary-700/40 absolute flex h-[200px] w-full flex-col justify-between p-4 transition-colors duration-300">
@@ -161,31 +155,13 @@ export const Home = () => {
       <div className="bg-primary-700 relative mx-auto mt-10 w-full max-w-[1080px] rounded-xl">
         <h2 className="text-primary-950 absolute -mt-6 w-full text-center text-4xl font-bold">Why Choose Us?</h2>
 
-        <Accordion data={items} />
+        <ChooseUsAccordion data={items} />
 
-        <div className="mt-6 w-full px-4 pb-6">
-          <div className="flex h-[430px] w-full items-end rounded-2xl bg-[url(/bg/bg1.jpg)] bg-cover p-4">
-            <div className="flex h-[127px] w-[266px] flex-col justify-between bg-[url(/r1.svg)]">
-              <div className="flex w-full justify-between">
-                <p className="mt-2 ml-4 w-[200px] font-bold">Vestibulum facilisis consectetur leo, non porta odio mollis at.</p>
-                <div className="bg-primary-600 flex h-[31px] w-[46px] items-center justify-center rounded-xl">
-                  <PiArrowRightBold className="text-primary-950 h-5 w-5" />
-                </div>
-              </div>
-
-              <div className="text-primary-200 bg-primary-950 mr-2 mb-2 flex w-fit items-center gap-1 self-end rounded-full px-3 py-1">
-                <p>Read More</p>
-                <PiArrowUpRightBold className="h-4 w-4" />
-              </div>
-            </div>
-
-            {/* <img src={`/Rectangle 28.svg`} alt="detail" className="h-[127px] w-[266px]" /> */}
-          </div>
-        </div>
+        <ChooseUsNews data={news} />
       </div>
 
-      <div className="mx-auto grid max-w-[1080px] grid-cols-12 gap-6 py-6">
-        <div className="col-span-10 col-start-2 flex items-center justify-between">
+      <div className="mx-auto grid max-w-[1080px] grid-cols-1 gap-6 px-4 py-6 md:grid-cols-12 md:px-0">
+        <div className="flex flex-col items-center justify-between md:col-span-10 md:col-start-2 md:flex-row">
           <h2 className="text-primary-950 text-4xl font-bold">Peta Penyebaran</h2>
           <p className="w-[325px] text-right text-[10px]">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vitae vehicula eros, consectetur efficitur elit. Aenean diam lacus,
@@ -193,8 +169,8 @@ export const Home = () => {
           </p>
         </div>
 
-        <img src="/indonesia.svg" alt="maps" className="text-primary-950 col-span-8 col-start-2" />
-        <div className="col-span-2 flex flex-col justify-center gap-2">
+        <img src="/indonesia.svg" alt="maps" className="text-primary-950 md:col-span-8 md:col-start-2" />
+        <div className="flex flex-col justify-center gap-2 md:col-span-2">
           {city.map((d, i) => (
             <div className="bg-primary-950 w-full rounded-lg py-1 text-center text-white" key={i}>
               {d}
@@ -206,54 +182,13 @@ export const Home = () => {
         {/* <div className="col-span-10 col-start-2 flex items-center justify-between"> */}
       </div>
 
-      <div className="bg-primary-950">
-        <div className="mx-auto grid max-w-[1080px] grid-cols-12 items-center gap-6 py-16">
-          <div className="col-span-5 col-start-2 flex flex-col gap-2">
-            <h2 className="border-primary-200 text-primary-200 w-fit rounded-full border px-4 py-1 text-base">Testomonial</h2>
-            <p className="text-4xl text-white">What Say Our Customers</p>
-            <p className="text-sm text-white">
-              Cras nisi nulla, ornare nec metus ut, iaculis dapibus ante. Nulla euismod lacus nulla, vitae hendrerit justo bibendum ac. Aenean ac nunc
-              a lorem dictum gravida. Vestibulum et hendrerit mi, et pretium massa.
-            </p>
-            <div className="flex flex-row gap-2">
-              <span className="text-primary-200 font-bold">Andi Lewis</span>
-              <span className="text-primary-200 font-bold">|</span>
-              <span className="text-primary-700">Top Customer</span>
-            </div>
-          </div>
-          <div className="relative col-span-5">
-            <div
-              className="aspect-[407/261] w-full"
-              style={{
-                backgroundImage: "url('/bg/bg1.jpg')",
-                WebkitMaskImage: "url('/svg/r2.svg')",
-                WebkitMaskRepeat: "no-repeat",
-                WebkitMaskSize: "contain",
-                WebkitMaskPosition: "center",
-              }}
-            />
-            <div className="absolute bottom-0 left-0 flex flex-col gap-2">
-              <div className="border-primary-200 flex aspect-square w-fit rounded-full border p-2">
-                <PiArrowLeftBold className="text-primary-200 w-4" />
-              </div>
-              <div className="border-primary-200 flex aspect-square w-fit rounded-full border p-2">
-                <PiArrowRightBold className="text-primary-200 w-4" />
-              </div>
-              <div className="flex gap-1">
-                <span className="text-primary-200 text-sm">1</span>
-                <span className="text-primary-200 text-sm">/</span>
-                <span className="text-sm text-white">10</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+      <Testimonial data={testimonial} />
 
-      <div className="mx-auto w-full max-w-[1080px]">
+      <div className="w-full max-w-[1080px] md:mx-auto">
         <div className="flex justify-between">
-          <div className="relative">
+          <div className="relative h-[243.5px]">
             <div
-              className="bg-primary-950 absolute -top-10 aspect-[392.5/243.5] w-[392.5px] pt-12 pl-8"
+              className="bg-primary-950 absolute -top-10 aspect-[392.5/243.5] w-screen overflow-hidden pt-12 pl-8 md:w-[392.5px]"
               style={{
                 WebkitMaskImage: "url('/svg/Rectangle 34.svg')",
                 WebkitMaskRepeat: "no-repeat",
@@ -280,118 +215,14 @@ export const Home = () => {
               </div>
             </div>
           </div>
-          <div className="w-[504px]">
-            <AccordionFaQ data={faq} />
+          <div className="mt-[243.5px] w-full md:mt-0 md:w-[504px]">
+            <FaQAccordion data={faq} />
           </div>
         </div>
       </div>
 
-      <div className="relative top-0 mx-auto w-full">
-        <div className="aspect-[1440/201] w-full" />
-        <div className="absolute left-1/2 aspect-[1032/288] w-full max-w-[1080px] -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-4xl">
-          <div className="absolute h-full w-full bg-[url('/bg/bg1.jpg')] bg-cover" />
-          <div className="bg-primary-700/40 absolute flex h-full w-full items-center justify-center">
-            <div className="flex w-fit flex-col items-center gap-4">
-              <h2 className="text-4xl font-bold text-white">Contact Us</h2>
-              <p className="max-w-[651px] text-center text-white">
-                Cras nisi nulla, ornare nec metus ut, iaculis dapibus ante. Nulla euismod lacus nulla, vitae hendrerit justo bibendum ac. Aenean ac
-                nunc a lorem dictum gravida. Vestibulum et hendrerit mi, et pretium massa.
-              </p>
-              <div className="flex gap-4">
-                <div className="bg-primary-700 border-primary-700 hover:text-primary-700 flex cursor-pointer items-center gap-1 rounded-full border px-3 py-1 text-sm text-white transition-colors duration-300 hover:bg-white">
-                  <AiOutlineWhatsApp className="text-lg" />
-                  <p className="text-center">+62 852-6470-0399</p>
-                </div>
-                <div className="bg-primary-700 border-primary-700 hover:text-primary-700 flex cursor-pointer items-center gap-1 rounded-full border px-3 py-1 text-sm text-white transition-colors duration-300 hover:bg-white">
-                  <AiOutlineWhatsApp className="text-lg" />
-                  <p className="text-center">+62 852-6470-0399</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="bg-primary-950 aspect-[1440/201] w-full" />
-      </div>
-      <div className="bg-primary-950 flex w-full flex-col items-center pb-10">
-        <div className="mx-auto flex w-full max-w-[1080px] gap-4">
-          <div className="bg-primary-700 flex min-w-[328px] flex-col items-center gap-4 rounded-2xl py-8">
-            <img src="/logo.png" alt="Logo" className="w-[150px] rounded-full" />
-            <p className="text-center text-4xl font-bold text-white">BAKTI TANI NUSANTARA</p>
-          </div>
-
-          <div className="flex w-full flex-col gap-4">
-            <div className="flex w-full flex-row items-start gap-8 rounded-2xl bg-white px-4 py-3">
-              <div className="">
-                <h3 className="text-xl font-bold">Quick Link</h3>
-                <ul className="ml-2 space-y-1 text-xs">
-                  <li>Home</li>
-                  <li>About Us</li>
-                  <li>Products</li>
-                  <li>Why Choose Us</li>
-                  <li>Testimony</li>
-                </ul>
-              </div>
-              <div className="">
-                <h3 className="text-xl font-bold">Contact</h3>
-                <ul className="ml-2 space-y-1 text-xs">
-                  <li>
-                    <div className="flex items-center gap-1">
-                      <BiSolidPhoneCall className="text-base" />
-                      <span>+62 852-6470-0399</span>
-                    </div>
-                  </li>
-                  <li>
-                    <div className="flex items-center gap-1">
-                      <MdEmail className="text-base" />
-                      <span>marketing.ptbtn@gmail.com</span>
-                    </div>
-                  </li>
-                  <li>
-                    <div className="flex items-start gap-1">
-                      <SiGooglemaps className="mt-1 text-base" />
-                      <span>
-                        JL. Engku Putri, Tunas Industrial Park Type 6 G,
-                        <br /> Tlk. Tering, Kec. Batam Kota, <br />
-                        Kota Batam, Kepulauan Riau 29444
-                      </span>
-                    </div>
-                  </li>
-                </ul>
-              </div>
-              <div className="">
-                <h3 className="text-xl font-bold">Resource</h3>
-                <ul className="ml-2 space-y-1 text-xs">
-                  <li>Privacy & Policy</li>
-                  <li>Terms & Condition</li>
-                  <li>Blog</li>
-                </ul>
-              </div>
-            </div>
-
-            <div className="flex w-full flex-col items-start gap-4 rounded-2xl bg-white px-4 py-3">
-              <div className="flex w-full items-center justify-center gap-3">
-                <img src="/svg/Group.svg" alt="Logo" className="w-[188px] rounded-full" />
-                <div className="border-primary-950 text-primary hover:bg-primary-950 flex items-center rounded-2xl border-2 p-4 transition-colors hover:text-white">
-                  <AiFillFacebook className="text-2xl" />
-                </div>
-                <div className="border-primary-950 text-primary hover:bg-primary-950 flex items-center rounded-2xl border-2 p-4 transition-colors hover:text-white">
-                  <AiOutlineInstagram className="text-2xl" />
-                </div>
-                <div className="border-primary-950 text-primary hover:bg-primary-950 flex items-center rounded-2xl border-2 p-4 transition-colors hover:text-white">
-                  <AiOutlineWhatsApp className="text-2xl" />
-                </div>
-                <div className="border-primary-950 text-primary hover:bg-primary-950 flex items-center rounded-2xl border-2 p-4 transition-colors hover:text-white">
-                  <BsTwitterX className="text-xl" />
-                </div>
-
-                <img src="/svg/Group.svg" alt="Logo" className="flip w-[188px] scale-x-[-1] rounded-full" />
-              </div>
-              <div className="bg-primary-950 h-1 w-full" />
-              <p className="w-full text-center">@Copyright baktitaninusantara.com. All Right reserved. 2025</p>
-            </div>
-          </div>
-        </div>
-      </div>
+      <ContactUs />
+      <Footer />
     </HomeLayout>
   );
 };
