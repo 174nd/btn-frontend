@@ -11,10 +11,10 @@ export const Navbar = () => {
     { name: "Home", href: "/" },
     { name: "About Us", href: "/about" },
     { name: "Products", href: "/products" },
-    { name: "Why Choose Us", href: "/why-choose-us" },
-    { name: "Testimony", href: "/testimony" },
-    { name: "Contact Us", href: "/contact" },
-    { name: "Privacy & Policy", href: "/privacy-policy" },
+    // { name: "Why Choose Us", href: "/why-choose-us" },
+    // { name: "Testimony", href: "/testimony" },
+    // { name: "Contact Us", href: "/contact" },
+    // { name: "Privacy & Policy", href: "/privacy-policy" },
   ];
 
   return (

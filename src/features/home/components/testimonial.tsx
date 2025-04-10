@@ -1,18 +1,34 @@
 import { AnimatePresence, motion } from "motion/react";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { PiArrowLeftBold, PiArrowRightBold } from "react-icons/pi";
 
 export function Testimonial({ data }: { data: { testimonial: string; name: string; title: string; image: string }[] }) {
   const [current, setCurrent] = useState(0);
+  const timerRef = useRef<NodeJS.Timeout | null>(null);
+
+  const startTimer = () => {
+    clearInterval(timerRef.current as unknown as number);
+    timerRef.current = setInterval(() => {
+      setCurrent((prev) => (prev + 1) % data.length);
+    }, 5000);
+  };
 
   // Ganti otomatis tiap 5 detik
   useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrent((prev) => (prev + 1) % data.length);
-    }, 5000);
+    startTimer(); // start saat mount
 
-    return () => clearInterval(interval);
+    return () => clearInterval(timerRef.current as unknown as number);
   }, []);
+
+  const handleNext = () => {
+    setCurrent((current - 1 + data.length) % data.length);
+    startTimer(); // restart timer setelah tombol ditekan
+  };
+
+  const handleBefore = () => {
+    setCurrent((current + 1) % data.length);
+    startTimer(); // restart timer setelah tombol ditekan
+  };
   return (
     <div className="bg-primary-950">
       <div className="mx-4 grid max-w-[1080px] grid-cols-1 items-center gap-6 py-16 md:mx-auto md:grid-cols-12">
@@ -50,13 +66,13 @@ export function Testimonial({ data }: { data: { testimonial: string; name: strin
           <div className="z-[1] flex w-[38px] flex-col items-center gap-1 md:gap-2">
             <div
               className="border-primary-200 hover:bg-primary-200 hover:text-primary-950 text-primary-200 flex aspect-square w-fit cursor-pointer rounded-full border p-[6px] transition-colors"
-              onClick={() => setCurrent((current + 1) % data.length)}
+              onClick={handleBefore}
             >
               <PiArrowLeftBold className="w-4" />
             </div>
             <div
               className="border-primary-200 hover:bg-primary-200 hover:text-primary-950 text-primary-200 flex aspect-square w-fit cursor-pointer rounded-full border p-[6px] transition-colors"
-              onClick={() => setCurrent((current - 1 + data.length) % data.length)}
+              onClick={handleNext}
             >
               <PiArrowRightBold className="w-4" />
             </div>

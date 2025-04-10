@@ -1,18 +1,29 @@
 import { AnimatePresence, motion } from "motion/react";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { PiArrowRightBold, PiArrowUpRightBold } from "react-icons/pi";
 
 export function ChooseUsNews({ data }: { data: { title: string; url: string; image: string }[] }) {
   const [current, setCurrent] = useState(0);
+  const timerRef = useRef<NodeJS.Timeout | null>(null); // untuk menyimpan interval
+
+  const startTimer = () => {
+    clearInterval(timerRef.current as unknown as number);
+    timerRef.current = setInterval(() => {
+      setCurrent((prev) => (prev + 1) % data.length);
+    }, 5000);
+  };
 
   // Ganti otomatis tiap 5 detik
   useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrent((prev) => (prev + 1) % data.length);
-    }, 5000);
+    startTimer(); // start saat mount
 
-    return () => clearInterval(interval);
+    return () => clearInterval(timerRef.current as unknown as number);
   }, []);
+
+  const handleNext = () => {
+    setCurrent((prev) => (prev + 1) % data.length);
+    startTimer(); // restart timer setelah tombol ditekan
+  };
 
   return (
     <div className="mt-6 w-full px-4 pb-6">
@@ -38,7 +49,7 @@ export function ChooseUsNews({ data }: { data: { title: string; url: string; ima
             <p className="mt-2 ml-4 w-[200px] font-bold">{data[current].title}</p>
             <div
               className="bg-primary-600 text-primary-950 hover:text-primary-600 hover:bg-primary-950 flex h-[31px] w-[46px] cursor-pointer items-center justify-center rounded-xl transition-colors"
-              onClick={() => setCurrent((current + 1) % data.length)}
+              onClick={handleNext}
             >
               <PiArrowRightBold className="h-5 w-5" />
             </div>

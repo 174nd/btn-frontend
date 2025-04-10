@@ -13,6 +13,8 @@
 import { Route as rootRoute } from './routes/__root'
 import { Route as HomeImport } from './routes/home'
 import { Route as IndexImport } from './routes/index'
+import { Route as AdminIndexImport } from './routes/admin/index'
+import { Route as AdminDashboardIndexImport } from './routes/admin/dashboard/index'
 
 // Create/Update Routes
 
@@ -25,6 +27,18 @@ const HomeRoute = HomeImport.update({
 const IndexRoute = IndexImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const AdminIndexRoute = AdminIndexImport.update({
+  id: '/admin/',
+  path: '/admin/',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const AdminDashboardIndexRoute = AdminDashboardIndexImport.update({
+  id: '/admin/dashboard/',
+  path: '/admin/dashboard/',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -46,6 +60,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof HomeImport
       parentRoute: typeof rootRoute
     }
+    '/admin/': {
+      id: '/admin/'
+      path: '/admin'
+      fullPath: '/admin'
+      preLoaderRoute: typeof AdminIndexImport
+      parentRoute: typeof rootRoute
+    }
+    '/admin/dashboard/': {
+      id: '/admin/dashboard/'
+      path: '/admin/dashboard'
+      fullPath: '/admin/dashboard'
+      preLoaderRoute: typeof AdminDashboardIndexImport
+      parentRoute: typeof rootRoute
+    }
   }
 }
 
@@ -54,36 +82,46 @@ declare module '@tanstack/react-router' {
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/home': typeof HomeRoute
+  '/admin': typeof AdminIndexRoute
+  '/admin/dashboard': typeof AdminDashboardIndexRoute
 }
 
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/home': typeof HomeRoute
+  '/admin': typeof AdminIndexRoute
+  '/admin/dashboard': typeof AdminDashboardIndexRoute
 }
 
 export interface FileRoutesById {
   __root__: typeof rootRoute
   '/': typeof IndexRoute
   '/home': typeof HomeRoute
+  '/admin/': typeof AdminIndexRoute
+  '/admin/dashboard/': typeof AdminDashboardIndexRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/home'
+  fullPaths: '/' | '/home' | '/admin' | '/admin/dashboard'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/home'
-  id: '__root__' | '/' | '/home'
+  to: '/' | '/home' | '/admin' | '/admin/dashboard'
+  id: '__root__' | '/' | '/home' | '/admin/' | '/admin/dashboard/'
   fileRoutesById: FileRoutesById
 }
 
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   HomeRoute: typeof HomeRoute
+  AdminIndexRoute: typeof AdminIndexRoute
+  AdminDashboardIndexRoute: typeof AdminDashboardIndexRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   HomeRoute: HomeRoute,
+  AdminIndexRoute: AdminIndexRoute,
+  AdminDashboardIndexRoute: AdminDashboardIndexRoute,
 }
 
 export const routeTree = rootRoute
@@ -97,7 +135,9 @@ export const routeTree = rootRoute
       "filePath": "__root.tsx",
       "children": [
         "/",
-        "/home"
+        "/home",
+        "/admin/",
+        "/admin/dashboard/"
       ]
     },
     "/": {
@@ -105,6 +145,12 @@ export const routeTree = rootRoute
     },
     "/home": {
       "filePath": "home.tsx"
+    },
+    "/admin/": {
+      "filePath": "admin/index.tsx"
+    },
+    "/admin/dashboard/": {
+      "filePath": "admin/dashboard/index.tsx"
     }
   }
 }

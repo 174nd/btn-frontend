@@ -1,18 +1,13 @@
 import { SiGooglemaps } from "react-icons/si";
 import { HomeLayout } from "./layout";
-import { PiArrowLeftBold, PiArrowRightBold } from "react-icons/pi";
 import { FaRegDotCircle } from "react-icons/fa";
-import { AiFillFacebook, AiOutlineInstagram, AiOutlineWhatsApp } from "react-icons/ai";
-import { BiSolidPhoneCall } from "react-icons/bi";
-import { MdEmail } from "react-icons/md";
-import { BsTwitterX } from "react-icons/bs";
-import { ChooseUsAccordion } from "./component/chooseUsAccordion";
-import { ChooseUsNews } from "./component/chooseUsNews";
-import { FaQAccordion } from "./component/faqAccordion";
-import { ContactUs } from "./component/contactUs";
-import Footer from "./component/footer";
-import { Testimonial } from "./component/testimonial";
-import { OurClient } from "./component/ourClientLogo";
+import { ChooseUsAccordion } from "./components/chooseUsAccordion";
+import { ChooseUsNews } from "./components/chooseUsNews";
+import { FaQAccordion } from "./components/faqAccordion";
+import { ContactUs } from "./components/contactUs";
+import Footer from "./components/footer";
+import { Testimonial } from "./components/testimonial";
+import { OurClient } from "./components/ourClientLogo";
 
 export const Home = () => {
   const items = [
@@ -172,7 +167,10 @@ export const Home = () => {
         <img src="/indonesia.svg" alt="maps" className="text-primary-950 md:col-span-8 md:col-start-2" />
         <div className="flex flex-col justify-center gap-2 md:col-span-2">
           {city.map((d, i) => (
-            <div className="bg-primary-950 w-full rounded-lg py-1 text-center text-white" key={i}>
+            <div
+              className="bg-primary-950 border-primary-950 hover:text-primary-950 w-full rounded-lg border py-1 text-center text-white transition-colors hover:bg-white"
+              key={i}
+            >
               {d}
             </div>
           ))}
